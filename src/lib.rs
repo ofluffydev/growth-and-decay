@@ -37,12 +37,12 @@ impl ExponentialChange {
     ///
     /// # Parameters
     /// - `principal`: The initial value at the start of the process.
-    /// - `final_value`: The final value after the specified time (optional).
-    /// - `rate`: The growth or decay rate (optional).
+    /// - `final_value`: The final value after the specified time. Can be `None` if the rate is provided.
+    /// - `rate`: The growth or decay rate. Can be `None` if the final value is provided.
     /// - `time`: The time over which the growth or decay occurs.
     ///
     /// # Panics
-    /// Panics if both `final_value` and `rate` are `None`, as at least one must be provided.
+    /// Panics if both `final_value` and `rate` are not provided, as at least one must be specified.
     ///
     /// # Returns
     /// A new instance of `ExponentialChange` with calculated values.
@@ -121,13 +121,13 @@ impl GrowthOrDecayRatios {
     /// Creates a new instance of `GrowthOrDecayRatios`.
     ///
     /// # Parameters
-    /// - `rt`: The final ratio after the specified time (optional).
+    /// - `rt`: The final ratio after the specified time. Can be `None` if the time is provided.
     /// - `r0`: The initial ratio at the start of the process.
     /// - `decay_years`: The half-life or characteristic decay time of the process.
-    /// - `time`: The time elapsed during the decay process (optional).
+    /// - `time`: The time elapsed during the decay process. Can be `None` if the final ratio is provided.
     ///
     /// # Panics
-    /// Panics if both `rt` and `time` are `None`, as at least one must be provided.
+    /// Panics if both `rt` and `time` are not provided, as at least one must be specified.
     ///
     /// # Returns
     /// A new instance of `GrowthOrDecayRatios` with calculated values.

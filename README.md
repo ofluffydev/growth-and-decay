@@ -18,7 +18,7 @@ Note this crate specifically updates values as changed when using `modify` funct
 use growth_and_decay::ExponentialChange;
 
 fn main() {
-    let mut growth = ExponentialChange::new(1_200_000.0, None, Some(0.025), 18.0);
+    let mut growth = ExponentialChange::new(1_200_000.0, None, 0.025, 18.0);
     println!("Initial population: {}", growth.principal);
     println!("Growth rate: {}", growth.rate);
     println!("Time: {} years", growth.time);
@@ -36,7 +36,7 @@ fn main() {
 use growth_and_decay::GrowthOrDecayRatios;
 
 fn main() {
-    let decay = GrowthOrDecayRatios::new(None, 1.0 / (10f64).powi(12), 8223.0, Some(8500.0));
+    let decay = GrowthOrDecayRatios::new(None, 1.0 / (10f64).powi(12), 8223.0, 8500.0);
     println!("Initial ratio (R0): {:.4e}", decay.r0);
     println!("Decay constant: {:.4e}", decay.decay_constant);
     println!("Time elapsed: {:.4e} years", decay.time);
