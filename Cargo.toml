@@ -2,7 +2,7 @@
 name = "growth-and-decay"
 description = "literally thrown together to solve problems on a math paper"
 keywords = ["math", "growth", "decay"]
-categories = ["math"]
+categories = ["mathematics", "science"]
 license-file = "LICENSE"
 repository = "https://github.com/ofluffydev/growth-and-decay"
 readme = "./README.md"
