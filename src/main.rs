@@ -19,9 +19,9 @@ fn main() {
     println!("{SEPARATOR}");
 
     let mut inputs = [
-        ExponentialChange::new(1_200_000.0, None, Some(0.025), 18.0),
-        ExponentialChange::new(5000.0, Some(2000.0), None, 3.0),
-        ExponentialChange::new(1000.0, Some(100.0), None, 50.0),
+        ExponentialChange::new(1_200_000.0, None, 0.025, 18.0),
+        ExponentialChange::new(5000.0, 2000.0, None, 3.0),
+        ExponentialChange::new(1000.0, 100.0, None, 50.0),
     ];
 
     // Copy the original input 2 for later use
@@ -90,7 +90,7 @@ fn main() {
         "Problem three for Exponential growth and decay: Time does not match expected value. Expected 150.169, got {time}"
     );
 
-    let decay_input = GrowthOrDecayRatios::new(None, 1.0 / (10f64).powi(12), 8223.0, Some(8500.0));
+    let decay_input = GrowthOrDecayRatios::new(None, 1.0 / (10f64).powi(12), 8223.0, 8500.0);
 
     println!("II. Carbon Dating:");
     println!(

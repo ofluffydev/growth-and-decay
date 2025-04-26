@@ -46,7 +46,15 @@ impl ExponentialChange {
     ///
     /// # Returns
     /// A new instance of `ExponentialChange` with calculated values.
-    pub fn new(principal: f64, final_value: Option<f64>, rate: Option<f64>, time: f64) -> Self {
+    pub fn new(
+        principal: f64,
+        final_value: impl Into<Option<f64>>,
+        rate: impl Into<Option<f64>>,
+        time: f64,
+    ) -> Self {
+        let final_value = final_value.into();
+        let rate = rate.into();
+
         // If neither final_value nor rate is provided, panic.
         assert!(
             !(final_value.is_none() && rate.is_none()),
@@ -123,7 +131,15 @@ impl GrowthOrDecayRatios {
     ///
     /// # Returns
     /// A new instance of `GrowthOrDecayRatios` with calculated values.
-    pub fn new(rt: Option<f64>, r0: f64, decay_years: f64, time: Option<f64>) -> Self {
+    pub fn new(
+        rt: impl Into<Option<f64>>,
+        r0: f64,
+        decay_years: f64,
+        time: impl Into<Option<f64>>,
+    ) -> Self {
+        let rt = rt.into();
+        let time = time.into();
+
         // Assert that either nt or time is provided.
         assert!(
             rt.is_some() || time.is_some(),
