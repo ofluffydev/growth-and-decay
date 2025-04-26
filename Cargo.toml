@@ -1,0 +1,12 @@
+[package]
+name = "growth-and-decay"
+description = "literally thrown together to solve problems on a math paper"
+keywords = ["math", "growth", "decay"]
+categories = ["math"]
+license-file = "LICENSE"
+repository = "https://github.com/ofluffydev/growth-and-decay"
+readme = "./README.md"
+version = "1.0.0"
+edition = "2024"
+
+[dependencies]
