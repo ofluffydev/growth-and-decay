@@ -7,7 +7,13 @@ use growth_and_decay::{ExponentialChange, GrowthOrDecayRatios};
 
 const SEPARATOR: &str = "----------------------------------------";
 
-/// This program calculates various values for growth and decay.
+/// This program demonstrates the use of the `growth-and-decay` crate to calculate
+/// various values for exponential growth and decay processes.
+///
+/// It includes examples for:
+/// - Calculating final values based on principal, rate, and time.
+/// - Modifying final values or time and recalculating other parameters.
+/// - Solving real-world problems such as population growth and radioactive decay.
 fn main() {
     println!("Meow\n");
     println!("{SEPARATOR}");
@@ -18,7 +24,7 @@ fn main() {
         ExponentialChange::new(1000.0, Some(100.0), None, 50.0),
     ];
 
-    // Copy the origin input 2 for later use
+    // Copy the original input 2 for later use
     let input2_original = inputs[1].clone();
 
     for (index, input) in inputs.iter().enumerate() {

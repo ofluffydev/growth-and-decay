@@ -6,7 +6,7 @@ categories = ["mathematics", "science"]
 license-file = "LICENSE"
 repository = "https://github.com/ofluffydev/growth-and-decay"
 readme = "./README.md"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 
 [dependencies]

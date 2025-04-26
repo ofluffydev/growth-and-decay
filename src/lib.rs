@@ -1,24 +1,51 @@
 use std::ops::Neg;
 
-/// Holds the input values for the exponential growth calculation.
+/// Represents the parameters and results of an exponential growth or decay process.
+///
+/// This struct is used to calculate the final value, rate, or time for exponential growth or decay.
+/// It supports modifying the final value or time and recalculating the other parameters accordingly.
 #[derive(Clone)]
 pub struct ExponentialChange {
+    /// The initial value (principal) at the start of the process.
     pub principal: f64,
+    /// The final value after the specified time.
     pub final_value: f64,
+    /// The growth or decay rate (as a fraction, e.g., 0.025 for 2.5%).
     pub rate: f64,
+    /// The time over which the growth or decay occurs.
     pub time: f64,
 }
 
+/// Represents the parameters and results of an exponential decay process.
+///
+/// This struct is used to calculate the decay constant, time, and ratios for processes such as radioactive decay.
 pub struct GrowthOrDecayRatios {
+    /// The final ratio (Rt) after the specified time.
     pub rt: f64,
+    /// The initial ratio (R0) at the start of the process.
     pub r0: f64,
+    /// The decay constant, calculated based on the half-life or decay years.
     pub decay_constant: f64,
+    /// The time elapsed during the decay process.
     pub time: f64,
+    /// The half-life or characteristic decay time of the process.
     pub decay_years: f64,
 }
 
 impl ExponentialChange {
-    /// Creates a new instance of `ExponentialGrowthInput`.
+    /// Creates a new instance of `ExponentialChange`.
+    ///
+    /// # Parameters
+    /// - `principal`: The initial value at the start of the process.
+    /// - `final_value`: The final value after the specified time (optional).
+    /// - `rate`: The growth or decay rate (optional).
+    /// - `time`: The time over which the growth or decay occurs.
+    ///
+    /// # Panics
+    /// Panics if both `final_value` and `rate` are `None`, as at least one must be provided.
+    ///
+    /// # Returns
+    /// A new instance of `ExponentialChange` with calculated values.
     pub fn new(principal: f64, final_value: Option<f64>, rate: Option<f64>, time: f64) -> Self {
         // If neither final_value nor rate is provided, panic.
         assert!(
@@ -47,7 +74,13 @@ impl ExponentialChange {
         }
     }
 
-    /// Modifies the final value of the instance, updates the time accordingly.
+    /// Modifies the final value of the instance and recalculates the time required.
+    ///
+    /// # Parameters
+    /// - `new_final_value`: The new final value to set.
+    ///
+    /// # Behavior
+    /// Updates the `final_value` field and recalculates the `time` field based on the current rate.
     pub fn modify_final_value(&mut self, new_final_value: f64) {
         // Update the final value
         self.final_value = new_final_value;
@@ -56,6 +89,13 @@ impl ExponentialChange {
         self.time = ((self.final_value / self.principal).ln() / self.rate).abs(); // Time cannot be negative
     }
 
+    /// Modifies the time of the instance and recalculates the final value.
+    ///
+    /// # Parameters
+    /// - `new_time`: The new time to set.
+    ///
+    /// # Behavior
+    /// Updates the `time` field and recalculates the `final_value` field based on the current rate.
     pub fn modify_final_time(&mut self, new_time: f64) {
         // Update the time and recalculate the final value.
         self.time = new_time;
@@ -70,10 +110,19 @@ impl ExponentialChange {
 }
 
 impl GrowthOrDecayRatios {
-    /// Creates a new instance of `DecayInput`.
+    /// Creates a new instance of `GrowthOrDecayRatios`.
     ///
-    /// Computes time if not provided, assuming standard exponential decay.
-    /// Panics if neither nt nor time is provided.
+    /// # Parameters
+    /// - `rt`: The final ratio after the specified time (optional).
+    /// - `r0`: The initial ratio at the start of the process.
+    /// - `decay_years`: The half-life or characteristic decay time of the process.
+    /// - `time`: The time elapsed during the decay process (optional).
+    ///
+    /// # Panics
+    /// Panics if both `rt` and `time` are `None`, as at least one must be provided.
+    ///
+    /// # Returns
+    /// A new instance of `GrowthOrDecayRatios` with calculated values.
     pub fn new(rt: Option<f64>, r0: f64, decay_years: f64, time: Option<f64>) -> Self {
         // Assert that either nt or time is provided.
         assert!(
